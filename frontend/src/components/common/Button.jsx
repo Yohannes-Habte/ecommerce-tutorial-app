@@ -1,4 +1,4 @@
-import React from "react";
+
 import { buttonVariants } from "../../styles/uiConfig";
 
 const Button = ({
@@ -8,10 +8,12 @@ const Button = ({
   rounded = "sm",
   shadow = "sm",
   width,
+  type = "submit",
   ...props
 }) => {
   return (
     <button
+      type={type}
       className={`${buttonVariants[variant]} ${buttonVariants[size]} ${buttonVariants[rounded]} ${buttonVariants[shadow]} `}
       style={width ? { width } : undefined}
     >

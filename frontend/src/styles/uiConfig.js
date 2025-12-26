@@ -96,21 +96,18 @@ const cartIcon = {
 // --------------------------------------------------------------
 export const boxContainer = {
   base: `flex gap-4 text-gray-900 dark:text-gray-100`,
-
   center: `flex items-center justify-center gap-6 text-gray-900 dark:text-gray-100`,
-
   column: `flex flex-col gap-4 text-gray-900 dark:text-gray-100`,
-
   columnCenter: `flex flex-col items-center justify-center gap-4 text-gray-900 dark:text-gray-100`,
-
   rowSpaceBetween: `flex items-center justify-between gap-4 text-gray-900 dark:text-gray-100`,
-
   rowStart: `flex items-start justify-start gap-4 text-gray-900 dark:text-gray-100`,
-
   rowEnd: `flex items-end justify-end gap-4 text-gray-900 dark:text-gray-100`,
-
   responsive: `flex flex-col sm:flex-row gap-4 text-gray-900 dark:text-gray-100`,
+
+    // Page-centered container with white background and black text
+  pageCenter: `flex items-center justify-center min-h-screen bg-white text-black`,
 };
+
 
 // --------------------------------------------
 // Layout primitives
@@ -194,11 +191,11 @@ export const formElements = {
 
 const buttonBase =
   `inline-flex items-center justify-center min-h-[44px] ` +
-  `px-3 py-2 sm:px-4 sm:py-2 ${rounded} ${shadow} ` +
+  `px-3 py-2 sm:px-4 sm:py-2 font-semibold cursor-pointer ${rounded} ${shadow} ` +
   `${transitionColors} ${focusRing} ${disabledState}`;
 
 export const buttonVariants = {
-  primary: `${buttonBase} bg-blue-600 text-white hover:bg-blue-700`,
+  primary: `${buttonBase} bg-blue-500 text-white hover:bg-blue-400`,
   secondary: `${buttonBase} bg-gray-200 text-gray-900 hover:bg-gray-300`,
   success: `${buttonBase} bg-green-600 text-white hover:bg-green-700`,
   danger: `${buttonBase} bg-red-600 text-white hover:bg-red-700`,

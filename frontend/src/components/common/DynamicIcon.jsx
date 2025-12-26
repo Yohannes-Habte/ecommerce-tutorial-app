@@ -3,7 +3,6 @@ import { header, boxContainer } from "../../styles/uiConfig";
 
 const DynamicIcon = ({
   icon: Icon,
-  size = 12,
   count = 0,
   ariaLabel = "Icon",
   className = "",
@@ -14,9 +13,8 @@ const DynamicIcon = ({
   return (
     <div className={`${boxContainer.base} ${relative ? "relative" : ""}`}>
       <Icon
-        size={size}
-        className={`${header.reactIcon} ${className}`}
         aria-label={ariaLabel}
+        className={`${header.reactIcon} ${className}`}
       />
       {count > 0 && <span className={header.badgeBase}>{count}</span>}
     </div>
@@ -24,3 +22,4 @@ const DynamicIcon = ({
 };
 
 export default DynamicIcon;
+

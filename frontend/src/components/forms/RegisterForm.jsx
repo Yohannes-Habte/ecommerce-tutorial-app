@@ -43,7 +43,7 @@ const RegisterForm = () => {
     if (!email.trim()) {
       newErrors.email = "Email is required.";
     } else if (!validateEmail(email)) {
-      newErrors.email = "Email is invalid.";
+      newErrors.email = "Invalid email format.";
     }
 
     if (!password.trim()) {
@@ -156,7 +156,7 @@ const RegisterForm = () => {
             shadow="md"
             type="submit"
           >
-            Register
+            Sign Up
           </Button>
         </form>
 

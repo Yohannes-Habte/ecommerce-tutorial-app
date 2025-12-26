@@ -3,7 +3,7 @@ import DynamicIcon from "../common/DynamicIcon";
 import { ShoppingCart, Power } from "lucide-react";
 import { Link } from "react-router-dom";
 import Button from "../common/Button";
-import { boxContainer, header } from "../../styles/uiConfig";
+import { boxContainer, header, typography } from "../../styles/uiConfig";
 
 const Header = () => {
   return (
@@ -11,7 +11,7 @@ const Header = () => {
       {/* Logo of the Business */}
       <Link to="/">
         {" "}
-        <h1>LisaConsult</h1>{" "}
+        <h1 className={`${typography.subtitle}`}>LisaConsult</h1>{" "}
       </Link>
 
       {/* Navigation Links */}
