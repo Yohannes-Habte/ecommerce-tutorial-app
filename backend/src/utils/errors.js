@@ -1,3 +1,4 @@
+// Custom Error Class for Application Errors
 export class AppError extends Error {
   constructor(message, statusCode) {
     super(message);
@@ -6,3 +7,5 @@ export class AppError extends Error {
     Error.captureStackTrace(this, this.constructor);
   }
 }
+
+

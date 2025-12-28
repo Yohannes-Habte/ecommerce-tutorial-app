@@ -7,6 +7,8 @@ import Button from "../common/Button";
 import DirectTo from "../common/DirectTo";
 import { boxContainer, formElements, typography } from "../../styles/uiConfig";
 
+const baseURL = import.meta.env.VITE_API_URL;
+
 const initialValues = {
   email: "",
   password: "",
@@ -72,13 +74,13 @@ const LoginForm = () => {
     try {
       const newUser = { email, password, rememberMe };
 
-      const response = await axios.post("/api/auth/login", newUser);
+      const response = await axios.post(`${baseURL}/auth/login`, newUser);
 
-      toast.success("Login successful!");
+      toast.success(response.data.message);
 
       restVariables();
     } catch (error) {
-      toast.error("Login failed. Please try again.");
+      toast.error(error.response?.data?.message);
     }
   };
 
@@ -116,7 +118,7 @@ const LoginForm = () => {
             checked={rememberMe}
             onChange={handleChange}
             label="Remember Me"
-            forgotPasswordLink="/forgot-password"
+            forgotPasswordLink="forgot-password"
           />
 
           <Button type="submit" disabled={loading} width="100%">

@@ -3,10 +3,11 @@ import axios from "axios";
 import { InputField, TermsCheckbox } from "../common/Input";
 import Button from "../common/Button";
 import { formElements, boxContainer, typography } from "../../styles/uiConfig";
-import { Link } from "react-router-dom";
 import { validateEmail, validatePassword } from "../../utils/validate";
 import { toast } from "react-toastify";
 import DirectTo from "../common/DirectTo";
+
+const baseURL = import.meta.env.VITE_API_URL;
 
 const initialState = {
   name: "",
@@ -77,7 +78,7 @@ const RegisterForm = () => {
 
     try {
       const newUser = { name, email, password, consent };
-      const response = await axios.post("/api/register", newUser);
+    const response = await axios.post(`${baseURL}/auth/register`, newUser);
       toast.success(response.data.message || "Registration successful!");
 
       resetValues();

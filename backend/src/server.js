@@ -1,6 +1,6 @@
 import http from "http";
 import app from "./app.js";
-// import { connectDB } from "./config/db.js";
+import  connectDB from "./config/db.js";
 import { PORT, NODE_ENV } from "./config/env.js";
 
 /**
@@ -25,7 +25,7 @@ const server = http.createServer(app);
  */
 const startServer = async () => {
   try {
-    // await connectDB();
+    await connectDB();
 
     server.listen(PORT, () => {
       console.log(

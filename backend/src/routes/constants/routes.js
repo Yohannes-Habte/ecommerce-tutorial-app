@@ -1,8 +1,8 @@
 import express from "express";
 import { getFooterSections } from "../../controllers/constants/controller.js";
 
-const router = express.Router();
+const constantsRouter = express.Router();
 
-router.get("/footer", getFooterSections);
+constantsRouter.get("/footer", getFooterSections);
 
-export default router;
+export default constantsRouter;

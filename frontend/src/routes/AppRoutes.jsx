@@ -11,8 +11,8 @@ import CartPage from "../pages/Cart/CartPage";
 // Auth Pages
 import LoginPage from "../pages/User/LoginPage";
 import RegisterPage from "../pages/User/RegisterPage";
-
-
+import ForgotPassword from "../pages/User/ForgotPassword";
+import ResetPassword from "../pages/User/ResetPassword";
 
 const AppRoutes = () => {
   return (
@@ -30,6 +30,8 @@ const AppRoutes = () => {
         {/* Auth Routes */}
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/reset-password/:token" element={<ResetPassword />} />
 
         {/* Admin Routes */}
       </Routes>

@@ -1,9 +1,10 @@
 import express from "express";
 import helmet from "helmet";
 import cors from "cors";
-import { limiter } from "./middlewares/rateLimit/middleware.js"; 
+import { limiter } from "./middlewares/rateLimit/middleware.js";
 import routes from "./routes/index.js";
 import { FRONTEND_URL } from "./config/env.js";
+import globalErrorHandler from "./middlewares/globalError/middleware.js";
 
 const app = express();
 
@@ -35,7 +36,11 @@ app.use(express.json());
 app.use("/api/v1", routes);
 
 // -------------------
+// Error Handling Middleware
+// -------------------
+app.use(globalErrorHandler);
+
+// -------------------
 // Export app
 // -------------------
 export default app;
-

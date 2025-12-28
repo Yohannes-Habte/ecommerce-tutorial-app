@@ -20,3 +20,5 @@ export const HTTP_STATUS = Object.freeze({
   INTERNAL_SERVER_ERROR: 500, // Unexpected server error
   SERVICE_UNAVAILABLE: 503, // Server temporarily unavailable
 });
+
+
