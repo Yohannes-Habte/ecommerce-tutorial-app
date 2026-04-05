@@ -1,11 +1,14 @@
 import { BrowserRouter } from "react-router";
 import AppRoutes from "./routes/AppRoutes";
 import { ToastContainer } from "react-toastify";
+import { AuthProvider } from "./context/Auth";
 
 const App = () => {
   return (
     <BrowserRouter>
-      <AppRoutes />
+      <AuthProvider>
+        <AppRoutes />
+      </AuthProvider>
 
       <ToastContainer
         position="top-right"

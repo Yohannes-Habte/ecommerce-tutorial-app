@@ -3,11 +3,12 @@ import {
   getAllUsers,
   getSingleUser,
 } from "../../controllers/user/controller.js";
+import { isAuthenticated } from "../../middlewares/auth/middleware.js";
 
 const userRouter = express.Router();
 
 // Define user routes here
 userRouter.get("/", getAllUsers);
-userRouter.get("/:id", getSingleUser);
+userRouter.get("/me", isAuthenticated, getSingleUser);
 
 export default userRouter;

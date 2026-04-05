@@ -29,7 +29,7 @@ const startServer = async () => {
 
     server.listen(PORT, () => {
       console.log(
-        `🚀 Server running in ${NODE_ENV || "development"} mode on port ${PORT}`
+        `🚀 Server running in ${NODE_ENV || "development"} mode on http://localhost:${PORT}/api/v1`
       );
     });
   } catch (error) {

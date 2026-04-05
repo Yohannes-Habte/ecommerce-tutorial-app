@@ -6,8 +6,7 @@ import { CheckboxFieldWithForgotPassword, InputField } from "../common/Input";
 import Button from "../common/Button";
 import DirectTo from "../common/DirectTo";
 import { boxContainer, formElements, typography } from "../../styles/uiConfig";
-
-const baseURL = import.meta.env.VITE_API_URL;
+import { baseURL } from "../../api/baseApi";
 
 const initialValues = {
   email: "",
@@ -74,7 +73,9 @@ const LoginForm = () => {
     try {
       const newUser = { email, password, rememberMe };
 
-      const response = await axios.post(`${baseURL}/auth/login`, newUser);
+      const response = await axios.post(`${baseURL}/auth/login`, newUser, {
+        withCredentials: true,
+      });
 
       toast.success(response.data.message);
 

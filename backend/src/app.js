@@ -1,6 +1,7 @@
 import express from "express";
 import helmet from "helmet";
 import cors from "cors";
+import cookieParser from "cookie-parser";
 import { limiter } from "./middlewares/rateLimit/middleware.js";
 import routes from "./routes/index.js";
 import { FRONTEND_URL } from "./config/env.js";
@@ -8,39 +9,34 @@ import globalErrorHandler from "./middlewares/globalError/middleware.js";
 
 const app = express();
 
-// -------------------
-// Security Middlewares
-// -------------------
+// Trust proxy (important in production)
+app.set("trust proxy", 1);
+app.disable("x-powered-by");
 
-// Add secure headers
+// Security
 app.use(helmet());
 
-// Enable CORS for your frontend
+// CORS
 app.use(
   cors({
-    origin: FRONTEND_URL, // frontend origin
-    methods: ["GET", "POST", "PUT", "DELETE"],
+    origin: FRONTEND_URL,
     credentials: true,
-  })
+  }),
 );
 
-// Limit repeated requests from same IP (rate limiting)
+// Parsers
+app.use(cookieParser());
+app.use(express.json({ limit: "10kb" }));
+app.use(express.urlencoded({ extended: true }));
+
+// Rate limiter
 app.use(limiter);
 
-// Parse JSON bodies
-app.use(express.json());
-
-// -------------------
 // Routes
-// -------------------
 app.use("/api/v1", routes);
 
-// -------------------
 // Error Handling Middleware
-// -------------------
 app.use(globalErrorHandler);
 
-// -------------------
-// Export app
-// -------------------
+// Export app for server.js
 export default app;

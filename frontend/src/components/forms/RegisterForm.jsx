@@ -6,8 +6,9 @@ import { formElements, boxContainer, typography } from "../../styles/uiConfig";
 import { validateEmail, validatePassword } from "../../utils/validate";
 import { toast } from "react-toastify";
 import DirectTo from "../common/DirectTo";
+import { baseURL } from "../../api/baseApi";
 
-const baseURL = import.meta.env.VITE_API_URL;
+
 
 const initialState = {
   name: "",

@@ -4,8 +4,11 @@ import { ShoppingCart, Power } from "lucide-react";
 import { Link } from "react-router-dom";
 import Button from "../common/Button";
 import { boxContainer, header, typography } from "../../styles/uiConfig";
+import { useAuth } from "../../context/Auth";
 
 const Header = () => {
+  const { user, logout } = useAuth();
+
   return (
     <header className={`${header.container}`} aria-label="Main Header">
       {/* Logo of the Business */}
@@ -28,11 +31,18 @@ const Header = () => {
             relative={true}
           />
         </Link>
-        <Link to="/login">
-          <Button>Log In</Button>
-        </Link>
 
-        <Link to="/" aria-label="Log Out">
+        {user ? (
+          <Link to="/profile">
+            <Button>{user.name.split(" ")[0]}</Button>
+          </Link>
+        ) : (
+          <Link to="/login">
+            <Button>Log In</Button>
+          </Link>
+        )}
+
+        <Link to="/" aria-label="Log Out" onClick={logout}>
           <DynamicIcon icon={Power} />
         </Link>
       </div>

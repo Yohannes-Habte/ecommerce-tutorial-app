@@ -43,7 +43,9 @@ export const createUser = async (req, res, next) => {
       path: "/",
       httpOnly: true,
       expires: new Date(Date.now() + JWT_EXPIRES_IN),
-      sameSite: "strict",
+      sameSite: "lax", // 👈 IMPORTANT
+      secure: false, // dev only
+      // sameSite: "strict",
       //   secure: process.env.NODE_ENV === "production", // Only HTTPS in prod
     });
 
@@ -62,7 +64,7 @@ export const createUser = async (req, res, next) => {
     console.error("Error creating user:", error);
     throw new AppError(
       "Internal server error",
-      HTTP_STATUS.INTERNAL_SERVER_ERROR
+      HTTP_STATUS.INTERNAL_SERVER_ERROR,
     );
   }
 };
@@ -100,8 +102,10 @@ export const loginUser = async (req, res, next) => {
       path: "/",
       httpOnly: true,
       expires: new Date(Date.now() + cookieExpiryMs),
-      sameSite: "strict",
-      secure: process.env.NODE_ENV === "production",
+      sameSite: "lax", // 👈 IMPORTANT
+      secure: false, // dev only
+      // sameSite: "strict",
+      // secure: process.env.NODE_ENV === "production",
     });
 
     res.status(200).json({
@@ -117,8 +121,45 @@ export const loginUser = async (req, res, next) => {
   } catch (error) {
     throw new AppError(
       "Internal server error",
-      HTTP_STATUS.INTERNAL_SERVER_ERROR
+      HTTP_STATUS.INTERNAL_SERVER_ERROR,
     );
+  }
+};
+
+// ==========================================
+// Get current logged-in user information
+// ==========================================
+export const getCurrentUser = async (req, res) => {
+  const userId = req.user.sub;
+  try {
+    const user = await User.findById(userId).select("-password");
+
+    if (!user) {
+      return res.status(404).json({
+        success: false,
+        message: "User not found",
+      });
+    }
+
+    res.status(200).json({
+      success: true,
+      result: user,
+    });
+  } catch (error) {
+    console.error("Error fetching user:", error.message);
+
+    // Handle invalid MongoDB ObjectId
+    if (error.name === "CastError") {
+      return res.status(400).json({
+        success: false,
+        message: "Invalid user ID",
+      });
+    }
+
+    res.status(500).json({
+      success: false,
+      message: "Server error while fetching user",
+    });
   }
 };
 
@@ -127,7 +168,7 @@ export const loginUser = async (req, res, next) => {
 // ==============================================================================================
 
 export const updateUser = async (req, res, next) => {
-  const userId = req.params.id;
+  const userId = req.user.sub;
   const updateData = req.body;
 
   try {
@@ -152,7 +193,7 @@ export const updateUser = async (req, res, next) => {
     console.error("Error updating user:", error);
     throw new AppError(
       "Internal server error",
-      HTTP_STATUS.INTERNAL_SERVER_ERROR
+      HTTP_STATUS.INTERNAL_SERVER_ERROR,
     );
   }
 };
@@ -209,7 +250,7 @@ Thanks, LisaConsult Team`;
     console.error("Error in forgotPassword:", error);
     throw new AppError(
       "Internal server error",
-      HTTP_STATUS.INTERNAL_SERVER_ERROR
+      HTTP_STATUS.INTERNAL_SERVER_ERROR,
     );
   }
 };
@@ -259,7 +300,7 @@ export const resetPassword = async (req, res, next) => {
     console.error("Error resetting password:", error);
     throw new AppError(
       "Internal server error",
-      HTTP_STATUS.INTERNAL_SERVER_ERROR
+      HTTP_STATUS.INTERNAL_SERVER_ERROR,
     );
   }
 };
@@ -273,7 +314,9 @@ export const logoutUser = (req, res, next) => {
       path: "/",
       httpOnly: true,
       expires: new Date(0),
-      sameSite: "strict",
+      sameSite: "lax", // 👈 IMPORTANT
+      secure: false, // dev only
+      // sameSite: "strict",
       //   secure: process.env.NODE_ENV === "production",
     });
 
@@ -285,7 +328,7 @@ export const logoutUser = (req, res, next) => {
     console.error("Error logging out user:", error);
     throw new AppError(
       "Internal server error",
-      HTTP_STATUS.INTERNAL_SERVER_ERROR
+      HTTP_STATUS.INTERNAL_SERVER_ERROR,
     );
   }
 };
