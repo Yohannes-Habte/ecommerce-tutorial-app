@@ -1,5 +1,6 @@
 import Footer from "../../components/layout/Footer";
 import Header from "../../components/layout/Header";
+import ProductList from "../../components/product/ProductList";
 import { pageLayout, typography } from "../../styles/uiConfig";
 
 const HomePage = () => {
@@ -9,6 +10,8 @@ const HomePage = () => {
 
       <section className={`${pageLayout.mainSection}`}>
         <h1 className={typography.title}>Welcome to LisaConsult</h1>
+
+        <ProductList />
       </section>
 
       <Footer />

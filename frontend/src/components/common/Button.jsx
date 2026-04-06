@@ -1,4 +1,3 @@
-
 import { buttonVariants } from "../../styles/uiConfig";
 
 const Button = ({
@@ -16,6 +15,7 @@ const Button = ({
       type={type}
       className={`${buttonVariants[variant]} ${buttonVariants[size]} ${buttonVariants[rounded]} ${buttonVariants[shadow]} `}
       style={width ? { width } : undefined}
+      {...props}
     >
       {children}
     </button>

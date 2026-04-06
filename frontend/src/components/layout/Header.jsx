@@ -5,9 +5,11 @@ import { Link } from "react-router-dom";
 import Button from "../common/Button";
 import { boxContainer, header, typography } from "../../styles/uiConfig";
 import { useAuth } from "../../context/Auth";
+import { useCart } from "../../context/CartProvider";
 
 const Header = () => {
   const { user, logout } = useAuth();
+  const { totalItems } = useCart();
 
   return (
     <header className={`${header.container}`} aria-label="Main Header">
@@ -26,7 +28,7 @@ const Header = () => {
           <DynamicIcon
             icon={ShoppingCart}
             size={14}
-            count={0}
+            count={totalItems}
             ariaLabel="Shopping Cart"
             relative={true}
           />

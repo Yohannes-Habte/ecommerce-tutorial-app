@@ -104,22 +104,20 @@ export const boxContainer = {
   rowEnd: `flex items-end justify-end gap-4 text-gray-900 dark:text-gray-100`,
   responsive: `flex flex-col sm:flex-row gap-4 text-gray-900 dark:text-gray-100`,
 
-    // Page-centered container with white background and black text
+  // Page-centered container with white background and black text
   pageCenter: `flex items-center justify-center min-h-screen bg-white text-black`,
 };
-
 
 // --------------------------------------------
 // Layout primitives
 // --------------------------------------------
 
 export const pageLayout = {
-  page: "flex min-h-screen flex-col bg-white dark:bg-gray-900",
+  page: "flex min-h-screen flex-col bg-white",
   content: "flex flex-grow flex-col",
   mainSection:
-    "flex-grow w-full min-h-[calc(100vh-72px)] bg-white text-black " +
-    "md:min-h-[calc(100vh-80px)] " +
-    "dark:text-black [&_*]:text-black",
+    "flex-grow w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 " +
+    "bg-white dark:bg-gray-100 text-black dark:text-gray-900 pb-24",
 };
 
 // --------------------------------------------
@@ -129,21 +127,20 @@ export const pageLayout = {
 const headingBase = "font-bold leading-tight";
 
 export const typography = {
-  display: `${headingBase} ${text.primary} text-3xl sm:text-4xl lg:text-5xl`,
-  title: `${headingBase} ${text.primary} text-xl sm:text-2xl lg:text-2xl text-center uppercase  ${spacing.marginY}`,
-  subtitle: `font-semibold ${text.secondary} text-xl md:text-2xl`,
-  body: `${text.body} leading-relaxed text-base md:text-lg`,
-  paragraph: `${text.body} leading-relaxed text-base md:text-lg max-w-prose py-4`,
+  display: `${headingBase}  text-3xl sm:text-4xl lg:text-5xl`,
+  title: `${headingBase}  text-xl sm:text-2xl lg:text-2xl text-center uppercase  ${spacing.marginY}`,
+  subtitle: `font-semibold text-gray-900 text-xl sm:text-2xl md:text-2xl lg:text-3xl mb-4`,
+  paragraph: `leading-relaxed text-base md:text-lg max-w-prose py-4`,
   caption: `${text.muted} text-sm md:text-base`,
   small: `${text.muted} text-xs sm:text-sm`,
-  button: "font-semibold uppercase tracking-wide text-sm sm:text-base",
+
 };
 
 // --------------------------------------------
 // Forms (professional, white inputs, accessible)
 // --------------------------------------------
 
-const inputBgColor = "bg-white text-gray-900 dark:bg-white dark:text-gray-900";
+const inputBgColor = "bg-white text-gray-900";
 
 const formBase =
   `appearance-none w-full min-h-[44px] px-3 py-2 border ` +
@@ -156,7 +153,7 @@ const formContainer = `w-[500px] p-6 m-6 border border-green-500 dark:border-gre
 
 export const formElements = {
   formContainer: `${formContainer}`,
-  form: "flex flex-col  bg-white",
+  form: "flex flex-col",
   input: `${formBase} placeholder-gray-400`,
   textarea: `${formBase} resize-none`,
   select: `${formBase}`,
@@ -182,7 +179,7 @@ export const formElements = {
     "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 " +
     "transition-colors cursor-pointer",
 
-  label: `block text-sm font-medium ${text.secondary} mb-1.5`,
+  label: `block text-sm font-medium text-gray-900 mb-1.5`,
 };
 
 // --------------------------------------------
@@ -195,20 +192,28 @@ const buttonBase =
   `${transitionColors} ${focusRing} ${disabledState}`;
 
 export const buttonVariants = {
-  primary: `${buttonBase} bg-blue-500 text-white hover:bg-blue-400`,
-  secondary: `${buttonBase} bg-gray-200 text-gray-900 hover:bg-gray-300`,
-  success: `${buttonBase} bg-green-600 text-white hover:bg-green-700`,
-  danger: `${buttonBase} bg-red-600 text-white hover:bg-red-700`,
-  warning: `${buttonBase} bg-yellow-500 text-white hover:bg-yellow-600`,
-  info: `${buttonBase} bg-sky-500 text-white hover:bg-sky-600`,
+  primary:
+    "bg-blue-600 text-white hover:bg-blue-700 focus:ring-blue-500 rounded-lg px-4 py-2 sm:px-5 sm:py-3 text-sm sm:text-base transition-colors duration-200 ease-in-out shadow-sm cursor-pointer",
+  secondary:
+    "bg-gray-200 text-gray-900 hover:bg-gray-300 focus:ring-gray-400 rounded-lg px-4 py-2 sm:px-5 sm:py-3 text-sm sm:text-base transition-colors duration-200 ease-in-out shadow-sm cursor-pointer",
+  success:
+    "bg-green-600 text-white hover:bg-green-700 focus:ring-green-500 rounded-lg px-4 py-2 sm:px-5 sm:py-3 text-sm sm:text-base transition-colors duration-200 ease-in-out shadow-sm cursor-pointer",
+  danger:
+    "bg-red-600 text-white hover:bg-red-700 focus:ring-red-500 rounded-lg px-4 py-2 sm:px-5 sm:py-3 text-sm sm:text-base transition-colors duration-200 ease-in-out shadow-sm cursor-pointer",
+  warning:
+    "bg-yellow-500 text-white hover:bg-yellow-600 focus:ring-yellow-400 rounded-lg px-4 py-2 sm:px-5 sm:py-3 text-sm sm:text-base transition-colors duration-200 ease-in-out shadow-sm cursor-pointer",
+  info: "bg-sky-500 text-white hover:bg-sky-600 focus:ring-sky-400 rounded-lg px-4 py-2 sm:px-5 sm:py-3 text-sm sm:text-base transition-colors duration-200 ease-in-out shadow-sm cursor-pointer",
   ghost:
-    `${buttonBase} bg-transparent shadow-none ` +
-    `text-gray-700 dark:text-gray-300 ` +
-    `hover:bg-gray-100 dark:hover:bg-gray-800`,
+    "bg-transparent text-gray-700 hover:bg-gray-100 focus:ring-gray-300 rounded-lg px-4 py-2 sm:px-5 sm:py-3 text-sm sm:text-base transition-colors duration-200 ease-in-out shadow-none cursor-pointer",
   outline:
-    `${buttonBase} border border-gray-300 dark:border-gray-700 ` +
-    `text-gray-700 dark:text-gray-300 ` +
-    `hover:bg-gray-50 dark:hover:bg-gray-800`,
+    "border border-gray-300 text-gray-700 hover:bg-gray-50 focus:ring-gray-300 rounded-lg px-4 py-2 sm:px-5 sm:py-3 text-sm sm:text-base transition-colors duration-200 ease-in-out shadow-sm cursor-pointer",
+  addToCart:
+    "bg-orange-400 text-white hover:bg-orange-600 hover:text-black focus:ring-orange-400 rounded-lg px-2 py-1 sm:px-2 sm:py-1 text-sm sm:text-base transition-colors duration-200 ease-in-out shadow-md cursor-pointer",
+  viewDetails:
+    "bg-white text-sky-600 border border-sky-500 hover:bg-sky-50 hover:text-red-700 focus:ring-sky-400 rounded-lg px-2 py-1 sm:px-2 sm:py-1 text-sm sm:text-base transition-colors duration-200 ease-in-out shadow-sm cursor-pointer",
+
+  removeFromCart:
+    "bg-red-500 text-white hover:bg-red-600 hover:text-black focus:ring-red-400 rounded-lg px-2 py-1 sm:px-2 sm:py-1 text-sm sm:text-base transition-colors duration-200 ease-in-out shadow-md cursor-pointer",
 };
 
 // --------------------------------------------
@@ -264,8 +269,8 @@ export const header = {
   height: "h-[72px] md:h-[80px]",
   container:
     `sticky top-0 z-40 flex w-full items-center justify-between ` +
-    `bg-gray-900/90 backdrop-blur dark:bg-gray-900/90 ${sectionPadding} shadow-md px-4 md:px-6 lg:px-12`,
-  brand: `font-bold text-xl sm:text-2xl lg:text-3xl ${text.header}`,
+    `bg-gray-700/90 backdrop-blur dark:bg-gray-700/90 ${sectionPadding} shadow-md px-4 md:px-6 lg:px-12`,
+  brand: `font-bold text-xl sm:text-2xl lg:text-3xl text-white`,
   nav: "hidden md:flex items-center gap-4 lg:gap-6 xl:gap-8 font-medium text-white",
   navItem: `relative px-2 py-1 hover:text-blue-400 ${transitionColors} ${focusRing}`,
   navItemActive:
@@ -314,4 +319,40 @@ export const transitions = {
   normal: `${transitionAll} duration-300`,
   slow: `${transitionAll} duration-500`,
   none: "transition-none",
+};
+
+// Card styles (for product cards, user profiles, content previews, etc.)
+export const card = {
+  cardsWrapper:
+    "grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-3",
+
+  cardWrapper:
+    "group rounded-xl border border-gray-200 bg-white shadow-sm transition hover:shadow-lg",
+
+  imageWrapper:
+    "flex h-56 items-center justify-center rounded-t-xl bg-gray-50 p-4",
+
+  image:
+    "max-h-full object-contain transition-transform duration-300 group-hover:scale-105",
+
+  content: "p-5 space-y-3",
+
+  title: "text-lg font-semibold text-gray-900",
+
+  description: "text-sm text-gray-600 line-clamp-3",
+
+  priceRatingContainer: "flex items-center justify-between pt-2",
+
+  price: "text-xl font-bold text-gray-900",
+
+  rating: "text-sm text-yellow-500",
+
+  stockCategoryContainer: "flex items-center justify-between text-sm pt-2",
+
+  stock: {
+    inStock: "font-medium text-green-600",
+    outOfStock: "font-medium text-red-500",
+  },
+
+  category: "rounded-full bg-gray-100 px-3 py-1 text-xs text-gray-700",
 };

@@ -12,7 +12,7 @@ const RegisterPage = () => {
       <section className={`${pageLayout.mainSection}`}>
         <h1 className={typography.title}>Create an Account for Free</h1>
 
-        <p className="text-center text-gray-700 dark:text-gray-300 ">
+        <p className="text-center text-gray-900">
           Enter your details to create your account
         </p>
 

@@ -7,9 +7,9 @@ const LoginPage = () => {
   return (
     <main className={`${pageLayout.page}`}>
       <Header />
-      <section className={`${pageLayout.mainSection}`}>
+      <section className={`${pageLayout.mainSection} `}>
         <h1 className={`${typography.title}`}> Welcome Back to your Account</h1>
-        <p className={`text-center text-gray-700 dark:text-gray-300 `}>
+        <p className={`${typography.paragraph} text-center max-w-md mx-auto`}>
           Enter your credentials to access your account
         </p>
 

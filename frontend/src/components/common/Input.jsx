@@ -104,8 +104,8 @@ export const FloatingLabelInput = ({
               error
                 ? "text-red-500 peer-focus:text-red-500"
                 : hasValue
-                ? "text-blue-500"
-                : "peer-focus:text-blue-500"
+                  ? "text-blue-500"
+                  : "peer-focus:text-blue-500"
             }
           `}
         >
@@ -303,10 +303,7 @@ export const TermsCheckbox = ({
           className={formElements.checkbox}
         />
 
-        <label
-          htmlFor={id}
-          className="text-sm text-gray-700 dark:text-gray-300"
-        >
+        <label htmlFor={id} className="text-sm text-gray-900">
           {beforeLink}
           <Link
             to={termsLink}
@@ -351,10 +348,7 @@ export const CheckboxFieldWithForgotPassword = ({
         />
 
         {label && (
-          <label
-            htmlFor={id}
-            className="text-sm text-gray-700 dark:text-gray-300 cursor-pointer"
-          >
+          <label htmlFor={id} className="text-sm text-gray-900">
             {label}
           </label>
         )}

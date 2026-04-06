@@ -13,6 +13,7 @@ import LoginPage from "../pages/User/LoginPage";
 import RegisterPage from "../pages/User/RegisterPage";
 import ForgotPassword from "../pages/User/ForgotPassword";
 import ResetPassword from "../pages/User/ResetPassword";
+import ProfilePage from "../pages/User/ProfilePage";
 
 const AppRoutes = () => {
   return (
@@ -32,6 +33,7 @@ const AppRoutes = () => {
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/reset-password/:token" element={<ResetPassword />} />
+        <Route path="/profile" element={<ProfilePage />} />
 
         {/* Admin Routes */}
       </Routes>

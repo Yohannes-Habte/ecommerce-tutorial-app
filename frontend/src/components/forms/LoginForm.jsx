@@ -7,6 +7,8 @@ import Button from "../common/Button";
 import DirectTo from "../common/DirectTo";
 import { boxContainer, formElements, typography } from "../../styles/uiConfig";
 import { baseURL } from "../../api/baseApi";
+import { useAuth } from "../../context/Auth";
+import { useNavigate } from "react-router-dom";
 
 const initialValues = {
   email: "",
@@ -15,6 +17,8 @@ const initialValues = {
 };
 
 const LoginForm = () => {
+  const navigate = useNavigate();
+  const { fetchUser } = useAuth();
   const [formValues, setFormValues] = useState(initialValues);
   const [formErrors, setFormErrors] = useState({});
   const [loading, setLoading] = useState(false);
@@ -64,11 +68,13 @@ const LoginForm = () => {
     e.preventDefault();
     const errors = formValidation();
 
-    if (Object.keys(errors).length === 0) {
-      setLoading(true);
-    } else {
+    // ❗ Stop if validation fails
+    if (Object.keys(errors).length !== 0) {
       setFormErrors(errors);
+      return;
     }
+
+    setLoading(true);
 
     try {
       const newUser = { email, password, rememberMe };
@@ -79,6 +85,10 @@ const LoginForm = () => {
 
       toast.success(response.data.message);
 
+      // Update global user state immediately
+      await fetchUser();
+
+      navigate("/");
       restVariables();
     } catch (error) {
       toast.error(error.response?.data?.message);
@@ -88,7 +98,7 @@ const LoginForm = () => {
   return (
     <div className={` ${boxContainer.columnCenter}`}>
       <section className={formElements.formContainer}>
-        <h3 className={typography.subtitle}>Log In</h3>
+        <h3 className={`${typography.subtitle} text-gray-900`}>Log In</h3>
 
         <form action="" onSubmit={handleSubmit} className={formElements.form}>
           <InputField

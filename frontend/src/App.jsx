@@ -2,12 +2,15 @@ import { BrowserRouter } from "react-router";
 import AppRoutes from "./routes/AppRoutes";
 import { ToastContainer } from "react-toastify";
 import { AuthProvider } from "./context/Auth";
+import { CartProvider } from "./context/CartProvider";
 
 const App = () => {
   return (
     <BrowserRouter>
       <AuthProvider>
-        <AppRoutes />
+        <CartProvider>
+          <AppRoutes />
+        </CartProvider>
       </AuthProvider>
 
       <ToastContainer
